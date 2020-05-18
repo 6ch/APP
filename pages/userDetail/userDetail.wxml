@@ -1,0 +1,48 @@
+<!--pages/userDetail/userDetail.wxml-->
+<view class="bg-white">
+  <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" style="height:42vh">
+    <swiper-item wx:for="{{1}}" wx:key>
+      <image src="{{infoData.headUrl}}" mode="aspectFill"></image>
+      <video src="{{infoData.headUrl}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+    </swiper-item>
+  </swiper>
+
+  <view class="flex justify-between margin-top padding">
+    <view class="flex">
+      <text class="text-black text-bold">{{infoData.nickName}}</text>
+        <view class="{{gender ? 'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}  round mx-l item-center" style="height:42rpx;width:42rpx;"></view>
+    </view>
+    <view class="cu-tag {{isFlag ? 'line-red' : 'line-gray'}} round" bindtap="attentionAction">{{isFlag ? '已关注' : '+关注TA'}}</view>
+  </view>
+
+  <view class="flex justify-between ms-t ml-l ml-r">
+    <view class="text-grey">{{age}}岁·{{stature}}cm·{{area}}</view>
+    <view class="cu-tag line-purple text-bold round" bindtap="otherInfo">基本信息</view>
+  </view>
+
+  <view class="text-bold text-black ml-l">{{fans}}粉丝</view>
+
+  <view class="flex mm-t justify-start ml-l ml-t">
+    <view class="cu-tag tag-color radius ">用户</view>
+    <navigator open-type="navigate" url="/pages/message/chat/chat" class="cu-tag tag-color radius">发起聊天</navigator>
+  </view>
+  <view style="height:30rpx"></view>
+</view>
+
+<view class="margin-top bg-white padding">
+  <view class="row"  wx:for="{{listData.length}}" wx:for-index="i">
+    <view class="text-bold text-black t0" style="width:500rpx">{{listData[i].createTime}}</view>
+    <view class="cu-card article no-card">
+      <view class="cu-item shadow" wx:for="{{listData.length}}" wx:for-index="j">
+         <view class="content" bindtap="clickCell" data-id="{{listData[i].id}}">
+         <block wx:if="{{listData[i].urlPicture.length > 0}}">
+          <image style="width:6.4em" src="{{listData[i].urlPicture[0]}}" mode="aspectFill" class="action"></image></block>
+          <view class="desc">
+            <view class="text-content">{{listData[i].content}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,36 @@
+<!--pages/login/login.wxml-->
+<view class="flex1 column justify-between">
+<view class="container">
+  <view class="topback">
+    <image  class="top_back" mode="aspectFill" src="../images/login_back.png"></image>
+  </view>
+  <image class="top_img" mode="aspectFit" src="../images/logo.jpg"></image>
+
+<form class="login-from">
+  <view class="myno">
+    <text style="margin-left: 20rpx">手机号:</text>
+    <input style="margin-left: 20rpx" placeholder="请输入手机号码" type="number"  maxlength="11" bindinput='blurPhone'></input>
+  </view>
+
+  <view class="mypwd">
+    <input style="margin-left:20rpx" placeholder="请输入验证码" bindinput="setValidateCode" type="number"></input>
+    <!-- <button class="checkBtn" bindtap="formSubmit">{{countCode}}</button> -->
+    <button size="mini" type="default"  plain="true" bindtap='formSubmit' class="checkBtn" disabled="{{disabled}}">{{getCode}}</button>
+  </view>
+</form>
+  
+  <button class="loginBtn" bindtap="loginAction">登录</button>
+
+
+</view>
+
+
+<view class="flex1 row justify-center align-center">
+<image src='../images/wx.png' class='wx ' bindtap="wxLogin">
+ <button  open-type="getPhoneNumber"></button>
+</image>  
+  </view>
+
+
+ </view>
+

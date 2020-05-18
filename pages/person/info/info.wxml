@@ -1,0 +1,177 @@
+
+<!-- 头像 -->
+<view class="justify-center row ml-b"  style="height: 320rpx; width: 100%">
+<image src="{{ava}}"  style="height: 320rpx; width: 320rpx" />
+</view>
+
+<!-- 已有照片 -->
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="bg-img" wx:for="{{otherUrls}}" wx:key="*this" bindtap="ViewImageotherUrls" data-url="{{otherUrls[index]}}">
+      <image src='{{otherUrls[index]}}' mode='aspectFill'></image>
+      <view class="cu-tag bg-red" catchtap="DelImgotherUrls" data-url="{{item}}">
+        <text class="cuIcon-close"></text>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<!-- 照片上传 -->
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="solids" bindtap="uploadPic">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+    <view class="bg-img" wx:for="{{imgList}}" wx:key="*this" bindtap="ViewImage" data-url="{{imgList[index]}}">
+      <image src='{{imgList[index]}}' mode='aspectFill'></image>
+      <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+        <text class="cuIcon-close"></text>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<view class="row"  >
+  <button bindtap="uploadingOtherUrls" wx:if="{{imgList && imgList.length}}" style="margin-left:65%;width: 30%" class="ps c0 radio themeBg release">完成上传</button>
+</view>
+
+<view class="space md-v" />
+
+<!-- 个人信息 -->
+<view class="pd-h" >
+  <view class="ps-b">
+    <text class="c1 t2 ml-r">{{name}}</text>
+    <image class="icon" src="{{gender !=='女' ? '../assets/男.png' : '../assets/女.png'}}" />
+  </view>
+  <view class="ps-b">
+    <text class="c2 t2">{{age}} · {{height}} · {{city}}</text>
+  </view>
+  <view class="ps-b">
+    <text class="c1 t1">{{fans}}粉丝</text>
+  </view>
+</view>
+
+<view class="line md-v" />
+
+<!-- 基本资料 -->
+<view class="pd-h" >
+  <view class="pd-b">
+    <text class="c1 tHead">基本资料</text>
+  </view>
+
+  <view class="flex flex-wrap">
+    <view wx:for="{{infoList}}" wx:key="*this">
+      <text class="bg-c0 cTheme md-r md-b cu-tag round border-theme ">{{item}}</text>
+    </view>
+  </view>
+
+  <navigator class="justify-between row" url="/pages/person/info/edit/edit" hover-class="none">
+    <text class="text-grey t3 c3">编辑个人信息</text>
+    <view class="cuIcon-right" />
+  </navigator>
+</view>
+
+<view class="line md-v" />
+
+<!-- 择偶标准 -->
+<view class="pd-h" >
+  <view class="pd-b">
+    <text class="c1 tHead">择偶标准</text>
+  </view>
+
+  <view class="flex flex-wrap">
+    <view wx:for="{{partnerInfo}}" wx:key="*this">
+      <text class="bg-c0 cTheme md-r md-b cu-tag round border-theme ">{{item}}</text>
+    </view>
+  </view>
+
+  <navigator class="justify-between row" url="/pages/person/info/edit/edit?TabCur=1"  hover-class="none">
+    <text class="text-grey t1 c1">编辑择偶标准</text>
+    <view class="cuIcon-right" />
+  </navigator>
+</view>
+
+<view class="line md-v" />
+
+<!-- 自我介绍 -->
+<view class="pd-h" >
+  <view class="pd-b">
+    <text class="c1 tHead">自我介绍</text>
+  </view>
+
+  <view bindtap="showModal1" class="justify-between row bg-c5" >
+    <text class="text-grey t3 c3">{{selfIntroduction || '添加自我介绍'}}</text>
+    <view class="cuIcon-right" />
+  </view>
+</view>
+
+<view class="line md-v" />
+
+<!-- 心动对象 -->
+<view class="pd-h" >
+  <view class="pd-b">
+    <text class="c1 tHead">心动对象</text>
+  </view>
+
+  <view bindtap="showModal2" class="justify-between row bg-c5" >
+    <text class="text-grey t3 c3">{{heartBeatObject || '待添加'}}</text>
+    <view class="cuIcon-right" />
+  </view>
+</view>
+
+<view class="line md-v" />
+
+<!-- 我的标签 -->
+<view class="pd-h" >
+  <view class="justify-between row" >
+    <text class="c1 tHead">我的标签</text>
+    <text 
+      class="bg-c0 md-r md-b cu-tag round"
+      style="border: 1rpx solid #007FFF;color: #007FFF"
+    >定制标签</text>
+  </view>
+</view>
+
+<view class="line md-v" />
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">自我介绍</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl bg-c0">
+     	<textarea class="bg-cLine pl t1 c1" bindinput="setSelfIntroduction" />
+    </view>
+    <view class="cu-bar bg-c0">
+      <view class="action">
+        <button class="bg-c0 text-gray mm" bindtap="hideModal">取消</button>
+        <button class="bg-c0 text-black mm" bindtap="addSelfIntroduction">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">心动对象</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl bg-c0">
+     	<textarea class="bg-cLine pl t1 c1" bindinput="setHeartBeatObject" />
+    </view>
+    <view class="cu-bar bg-c0">
+      <view class="action">
+        <button class="bg-c0 text-gray mm" bindtap="hideModal">取消</button>
+        <button class="bg-c0 text-black mm" bindtap="addHeartBeatObject">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

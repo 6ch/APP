@@ -1,0 +1,73 @@
+<view class="cu-card dynamic {{isCard?'no-card':''}}">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="backgground-size:cover;background-image:url('{{resultData.getUserInfoOutput.headUrl}}');" bindtap="clickHeader"></view>
+        <view class="content flex-sub">
+          <view>{{resultData.getUserInfoOutput.nickName}}</view>
+          <view class="text-gray text-sm flex justify-between">
+            {{resultData.dynamicOutput.createTime}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="text-content">
+      {{resultData.dynamicOutput.content}}
+    </view>
+    <view class="grid flex-sub padding-lr {{isCard?'col-3 grid-square':'col-1'}}">
+      <view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url('{{resultData.dynamicOutput.urlPicture[index]}}');" wx:for="{{resultData.dynamicOutput.urlPicture.length}}" wx:key="{{index}}">
+      </view>
+    </view>
+    <view class="text-gray text-sm text-right padding">
+      <!-- <text class="cuIcon-attentionfill margin-lr-xs"></text> 10 -->
+      <text class="cuIcon-appreciatefill margin-lr-xs {{resultData.isFlag ? 'text-red' : 'text-gray'}}"></text> {{resultData.likes == 0 ? '' : resultData.likes}}
+      <text class="cuIcon-messagefill margin-lr-xs"></text> {{resultData.commentOutputs.length == 0 ? '' : resultData.commentOutputs.length}}
+    </view>
+    <view class="cu-list menu-avatar comment solids-top" wx:for="{{listData.length}}" wx:for-index="i">
+      <view class="cu-item" bindtap="_clickCell" data-index="{{i}}">
+        <view class="cu-avatar round" style="background-image:url('{{listData[i].commentHeadUrl}}');" catchtap="clickCellHeader" data-index="{{i}}"></view>
+        <view class="content">
+          <view class="flex justify-between">
+            <view class="text-grey">{{listData[i].formUserName}}</view>
+            <text class="cuIcon-more margin-lr-xs" catchtap="moreAction" data-index="{{i}}"></text> 
+          </view>
+          <view class="text-gray text-content text-df">
+            {{listData[i].commentContent}}
+          </view>
+          <!-- <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+            <view class="flex">
+              <view>凯尔：</view>
+              <view class="flex-sub">妹妹，你在帮他们给黑暗找借口吗?</view>
+            </view>
+          </view> -->
+          <view class="margin-top-sm flex justify-between">
+            <view class="text-gray text-df">{{listData[i].createTime}} 回复 : {{listData[i].toUserName}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style="height:80rpx"></view>
+<view style="position:fixed;z-index:666;left:0rpx;right:0rpx;bottom:0rpx;height:80rpx">
+  <view class="grid col-3 text-center">
+    <view class="padding {{ resultData.isFlag ? 'text-red' : 'text-gray'}} solid cuIcon-appreciatefill bg-gray text-center" bindtap="appreciateAction"></view> 
+    <view class="padding bg-gray solid cuIcon-commentfill text-gray text-center" bindtap="commentAction" style="align-item:center;justify-content:center">{{resultData.commentOutputs.length == 0 ? '' : resultData.commentOutputs.length}}</view>
+    <view class="padding bg-gray solid cuIcon-messagefill text-gray text-center"></view>
+  </view>
+</view>
+
+<!-- 评论窗口 -->
+<view style="position:fixed;z-index:888;background-color:#eee;left:0rpx;right:0rpx;top:100vh;height:250rpx" animation="{{commentAnimationData}}">
+  <view style="display:flex;flex-direction:row">
+    <view style="display:flex;background-color:white;margin:20rpx 0rpx 20rpx 40rpx;width:70vw;height:210rpx;flex-direction:column">
+      <textarea style="display:flex;margin:10rpx 10rpx 0rpx 10rpx;width:calc(70vw - 20rpx)" placeholder="{{commentPlaceholder}}" cursor-spacing="170" bindinput='userInput' maxlength="100" value="{{inputStr}}"></textarea>
+      <view style="display:flex;margin:0rpx 10rpx 10rpx 10rpx;justify-content:flex-end;color:#ddd">{{length}}/100</view>
+    </view>
+    <view style="display:flex;margin: 20rpx 10rpx 20rpx 0;height:210rpx;width:calc(30vw - 50rpx);flex-direction:column">
+      <image class="cuIcon-close" style="display:flex;margin-left:calc(30vw - 90rpx);width:40rpx;height:40rpx;" bindtap="closeComment"></image>
+      <text style="display:flex;width:calc(30vw - 50rpx);height:150rpx;color:rgb(109, 109, 248);align-items:center;justify-content:center;" bindtap="add">发送</text>
+    </view>
+  </view>
+</view>
+

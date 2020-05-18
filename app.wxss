@@ -1,0 +1,426 @@
+
+@import "lib/colorui/main.wxss";
+@import "lib/colorui/icon.wxss";
+
+
+page {
+  /* 填充颜色 */
+  --c0: #FFFFFF; /* 纯色填充的字体颜色 */
+  --c1: #333333; /* 一级文字颜色，标题，重要的说明性文字等 */
+  --c2: #666666; /* 二级文字颜色，次一级的标题色，或大段的描述性文字 */
+  --c3: #999999; /* 三级文字颜色，如提示型文字、不重要的备注说明、装饰性质的日期等 */
+  --c4: #B5B6B6; /* 四级文字颜色，不重要的占位字段，如输入框占位字段，不可用状态等 */
+  --c5: #DDDDDD; /* 五级文字颜色，备用的颜色字段 */
+  --c6: #EEEEEE; /* 六级文字颜色，备用的颜色字段 */
+
+  /* 特殊的标识性的颜色 */
+  --cTheme: #8d52e6; /*  app的主题色;红色  */
+  --cThemeShallow: #a273e7; /*  app主题色的较浅同色系 */
+  --cThemeDeep: #8074e8; /*  app主题色的较深同色系 */
+
+  --cBack: #F0F0F0; /*  表示大块的背景填充色 */
+  --cGap: #E9ECED; /*  表示块与块之间的间隔背景填充色 */
+  --cLine: #E0E0E0; /*  表示分隔线条的颜色 */
+
+  --cUp: #E34546; /*  表示正向的颜色，如标识上涨或盈利之类的文字 */
+  --cDown: #01BD78; /*  表示负向的颜色，如标识亏损或下降等的文字 */
+  --cBlue: #2daae4;
+
+  /* 字体 */
+  --t1: 30rpx; /*  一级文字字号，标识主要的标题文字，包括列表、大段文字的标题或主要的标签性文字 */
+  --t2: 25rpx; /*  二级文字字号，一般的正文、描述性文字，或你不确定的任何字号 */
+  --t3: 22rpx; /*  三级文字字号，小标签或小图片里面的文字 */
+  --t4: 20rpx; /*  四级文字字号，备用字号 */
+  --t5: 18rpx; /*  五级文字字号，备用字号 */
+  /*  特殊的文字字号  */
+  --t0: 50rpx; /* 最大标题字号 */
+  --tHead: 36rpx; /*  导航条标题字号 */
+  /* 间隔 */
+  --tLine: 2rpx;
+  --line-sm: 10rpx;
+  --line-md: 20rpx;
+  --line-lg: 30rpx;
+  --line-xl: 40rpx;
+
+}
+
+.themeBg {
+  background-image: linear-gradient(#a273e7, #8074e8);
+}
+
+.border {
+  border:1rpx solid var(--cLine);
+}
+
+.border-theme {
+  border:1rpx solid var(--cTheme);
+}
+
+.tag-color{
+  background-color: #a273e7;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.icon {
+  height: 32rpx;
+  width: 32rpx;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex1 {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.row-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.space {
+  height: 1rpx;
+  background-color: var(--cLine);
+}
+
+.line {
+  height: 16rpx;
+  background-color: var(--cBack);
+}
+
+.numberOfLine-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.numberOfLine-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 边距 */
+.ps {
+  padding: var(--line-sm);
+}
+.ps-l {
+  padding-left: var(--line-sm);
+}
+.ps-r {
+  padding-right: var(--line-sm);
+}
+.ps-t {
+  padding-top: var(--line-sm);
+}
+.ps-b {
+  padding-bottom: var(--line-sm);
+}
+.ps-v {
+  padding-top: var(--line-sm);
+  padding-bottom: var(--line-sm);
+}
+.ps-h {
+  padding-left: var(--line-sm);
+  padding-right: var(--line-sm);
+}
+.pd {
+  padding: var(--line-md);
+}
+.pd-l {
+  padding-left: var(--line-md);
+}
+.pd-r {
+  padding-right: var(--line-md);
+}
+.pd-t {
+  padding-top: var(--line-md);
+}
+.pd-b {
+  padding-bottom: var(--line-md);
+}
+.pd-v {
+  padding-top:var(--line-md);
+  padding-bottom: var(--line-md);
+}
+.pd-h {
+  padding-left: var(--line-md);
+  padding-right: var(--line-md);
+}
+.pl {
+  padding: var(--line-lg);
+}
+.pl-l {
+  padding-left: var(--line-lg);
+}
+.pl-r {
+  padding-right: var(--line-lg);
+}
+.pl-t {
+  padding-top: var(--line-lg);
+}
+.pl-b {
+  padding-bottom: var(--line-lg);
+}
+.pl-v {
+  padding-top: var(--line-lg);
+  padding-bottom: var(--line-lg);
+}
+.pl-h {
+  padding-left: var(--line-lg);
+  padding-right: var(--line-lg);
+}
+.px {
+  padding: var(--line-xl);
+}
+.px-l {
+  padding-left: var(--line-xl);
+}
+.px-r {
+  padding-right: var(--line-xl);
+}
+.px-t {
+  padding-top: var(--line-xl);
+}
+.px-b {
+  padding-bottom: var(--line-xl);
+}
+.px-v {
+  padding-top: var(--line-xl);
+  padding-bottom: var(--line-xl);
+}
+.px-h {
+  padding-left: var(--line-xl);
+  padding-right: var(--line-xl);
+}
+.ms {
+  margin: var(--line-sm);
+}
+.ms-l {
+  margin-left: var(--line-sm);
+}
+.ms-r {
+  margin-right: var(--line-sm);
+}
+.ms-t {
+  margin-top: var(--line-sm);
+}
+.ms-b {
+  margin-bottom: var(--line-sm);
+}
+.ms-v {
+  margin-top: var(--line-sm);
+  margin-bottom: var(--line-sm);
+}
+.ms-h {
+  margin-left: var(--line-sm);
+  margin-right: var(--line-sm);
+}
+.md {
+  margin: var(--line-md);
+}
+.md-l {
+  margin-left: var(--line-md);
+}
+.md-r {
+  margin-right: var(--line-md);
+}
+.md-t {
+  margin-top: var(--line-md);
+}
+.md-b {
+  margin-bottom: var(--line-md);
+}
+.md-v {
+  margin-top: var(--line-md);
+  margin-bottom: var(--line-md);
+}
+.md-h {
+  margin-left: var(--line-md);
+  margin-right: var(--line-md);
+}
+.ml {
+  margin: var(--line-lg);
+}
+.ml-l {
+  margin-left: var(--line-lg);
+}
+.ml-r {
+  margin-right: var(--line-lg);
+}
+.ml-t {
+  margin-top: var(--line-lg);
+}
+.ml-b {
+  margin-bottom: var(--line-lg);
+}
+.ml-v {
+  margin-top: var(--line-lg);
+  margin-bottom: var(--line-lg);
+}
+.ml-h {
+  margin-left: var(--line-lg);
+  margin-right: var(--line-lg);
+}
+.mx {
+  margin: var(--line-xl);
+}
+.mx-l {
+  margin-left: var(--line-xl);
+}
+.mx-r {
+  margin-right: var(--line-xl);
+}
+.mx-t {
+  margin-top: var(--line-xl);
+}
+.mx-b {
+  margin-bottom: var(--line-xl);
+}
+.mx-v {
+  margin-top: var(--line-xl);
+  margin-bottom: var(--line-xl);
+}
+.mx-h {
+  margin-left: var(--line-xl);
+  margin-right: var(--line-xl);
+}
+
+
+/* 字体 */
+.t0 {
+  font-size: var(--t0)
+}
+.t1 {
+  font-size: var(--t1)
+}
+.t2 {
+  font-size: var(--t2)
+}
+.t3 {
+  font-size: var(--t3)
+}
+.t4 {
+  font-size: var(--t4)
+}
+.t5 {
+  font-size: var(--t5)
+}
+.t6 {
+  font-size: var(--t5)
+}
+.tHead {
+  font-size: var(--tHead)
+}
+.c0 {
+  color: var(--c0);
+}
+.c1 {
+  color: var(--c1);
+}
+.c2 {
+  color: var(--c2);
+}
+.c3 {
+  color: var(--c3);
+}
+.c4 {
+  color: var(--c4);
+}
+.c5 {
+  color: var(--c5);
+}
+.cTheme {
+  color: var(--cTheme);
+}
+.cLine {
+  color: var(--cLine)
+}
+.cUp {
+  color: var(--cUp)
+}
+.cDown {
+  color: var(--cDown)
+}
+.cBlue {
+  color: var(--cBlue)
+}
+.cThemeS {
+  color: var(--cThemeShallow)
+}
+.cThemeD {
+  color: var(--cThemeDeep)
+}
+.bg-c0 {
+  background-color: var(--c0);
+}
+.bg-c1 {
+  background-color: var(--c1);
+}
+.bg-c2 {
+  background-color: var(--c2);
+}
+.bg-c3 {
+  background-color: var(--c3);
+}
+.bg-c4 {
+  background-color: var(--c4);
+}
+.bg-c5 {
+  background-color: var(--c5);
+}
+.bg-cTheme {
+  background-color: var(--cTheme);
+}
+.bg-cLine {
+  background-color: var(--cLine)
+}
+.bg-cUp {
+  background-color: var(--cUp)
+}
+.bg-cDown {
+  background-color: var(--cDown)
+}
+.bg-cBlue {
+  background-color: var(--cBlue)
+}
+.bg-cThemeS {
+  background-color: var(--cThemeShallow)
+}
+.bg-cThemeD {
+  background-color: var(--cThemeDeep)
+}
+
+/* 剧中 */
+.item-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+

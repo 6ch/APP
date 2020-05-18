@@ -1,0 +1,64 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/login/login",
+    "pages/person/person",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/release/release",
+    "pages/homeDetail/homeDetail",
+    "pages/person/auth/auth",
+    "pages/person/auth/idAuth/idAuth",
+    "pages/person/auth/acadAuth/acadAuth",
+    "pages/activity/activity",
+    "pages/Myactivity/Myactivity",
+    "pages/person/info/info",
+    "pages/person/info/edit/edit",
+    "pages/activityDetail/activityDetail",
+    "pages/userDetail/userDetail",
+    "pages/message/message/message",
+    "pages/message/chat/chat",
+    "pages/assets/assets",
+    "pages/map/map",
+    "pages/person/otherInfo/otherInfo"
+  ],
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#8d52e6",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "pages/images/home.png",
+        "selectedIconPath": "pages/images/home1.png",
+        "text": "广场"
+      },
+      {
+        "pagePath": "pages/activity/activity",
+        "iconPath": "pages/images/active.png",
+        "selectedIconPath": "pages/images/active1.png",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/message/message/message",
+        "iconPath": "pages/images/chat.png",
+        "selectedIconPath": "pages/images/chat1.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "iconPath": "pages/images/mine.png",
+        "selectedIconPath": "pages/images/mine1.png",
+        "text": "个人"
+      }
+    ],
+    "usingComponents": {}
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,91 @@
+/* pages/login/login.wxss */
+.container{
+  display: flex;
+  overflow-x: hidden;
+}
+
+.wx {
+  height: 90rpx;
+  width: 90rpx;
+}
+
+.topback{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 20vw;
+}
+.top_back{
+  display: flex;
+  justify-content: center;
+  margin-top: -85vw;
+  margin-left: -5vw;
+  margin-right: -5vw;
+  width: 110vw;
+  height: 105vw;
+  border-bottom-left-radius: 48vw;
+  border-bottom-right-radius: 48vw;
+}
+.top_img{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: -14vw;
+  width: 28vw;
+  height: 28vw;
+  border-radius: 15vw;
+  box-shadow: 0rpx 0rpx 2rpx 2rpx lightgray;
+}
+
+
+ 
+/*表单内容*/
+.login-from {
+  margin-top: 90rpx;
+  height:100%;
+  width: 100%;
+}
+ 
+/* 输入框 */
+.myno{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 80rpx;
+  margin: 0 auto;
+  border:1px solid #ccc;
+  border-radius: 10rpx;
+  flex-direction: row;
+}
+.mypwd{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 80rpx;
+  margin: 0 auto;
+  border:1px solid #ccc;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.checkBtn{
+  display: flex;
+  margin-right: 20rpx;
+}
+/*按钮*/ 
+.loginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 90rpx;
+  line-height: 80rpx;
+  margin-top: 35px;
+  background-color:rgba(255, 230, 0, 0.89);
+  border: 0.1rpx solid #ccc;
+  border-radius: 40rpx;
+}
+ 
+ 

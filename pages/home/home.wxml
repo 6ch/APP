@@ -1,0 +1,161 @@
+<!--pages/home/home.wxml-->
+<view class="containner">
+  <view style="position:fixed;left:0rpx;top:0rpx;">
+    <view class="header_back">
+      <!-- 发布 -->
+      <image class="release_back" bindtap="releaseAction" src="../images/release.png"></image>
+      <!-- 动态 -->
+      <text class="type_back"  style=" font-weight: {{typeSelectNum == 0 ? 'bold' : 'normal' }}" bindtap="tabSelectAction" data-index="0">动态</text>
+      <!-- 匹配 -->
+      <text class="type_back" style=" font-weight: {{typeSelectNum == 1 ? 'bold' : 'normal' }}" bindtap="tabSelectAction" data-index="1">匹配</text>
+      <!-- 搜索 -->
+      <image class="search_btn_back"bindtap="tabSelectAction" data-index="2" src="../images/search.png"></image>
+    </view>
+  </view>
+  
+
+  <block wx:if="{{typeSelectNum == 0 }}">
+    <view class="right_menu_back" animation="{{animationData}}">
+      <view style="display: flex;flex-direction: row; justify-content: space-between;align-items: center;">
+        <view class="search_input_back">
+          <block wx:for="{{itemData}}" wx:for-index="i">
+            <text class="{{currentTag == i ? 'select_item' : 'unselect_item'}}" bindtap="itemSelect" data-item="{{i}}">{{itemData[i]}}</text>
+          </block>
+        </view>
+        <view class="search_cancle" bindtap="cancleSearch">取消</view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:elif="{{typeSelectNum == 1 }}">
+    <view class="right_menu_back" animation="{{animationData}}">
+      <view style="display: flex;flex-direction: row; justify-content: space-between;align-items: center;">
+        <view class="search">
+          <view class="searchItem">
+            <image src='../images/search_black.png' />
+            <input placeholder='匹配一下'></input>
+          </view>
+        </view>
+        <view class="search_cancle" bindtap="cancleSearch" placeholder="匹配一下">取消</view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<block wx:if="{{typeSelectNum == 0}}">
+  <view style="margin-top:90rpx" wx:for="{{resultData}}" wx:for-index="i">
+    <!-- 帖子 -->
+    <view class="main_cell" bindtap="_clickCell" data-index="{{i}}"> 
+      <view class="info-top"> 
+        <view class="userImgBack" catchtap="_clickHeader" data-index="{{i}}"> 
+            <view class="userImg" style="background-size:cover;background-image:url('{{resultData[i].getUserInfoOutput.headUrl}}')"></view> 
+          </view> 
+        <view style="width:100vw"> 
+          <view class="header-name-back"> 
+            <text class="name">{{resultData[i].getUserInfoOutput.nickName}}</text> 
+            <view class="time">{{resultData[i].dynamicOutput.createTime}}</view> 
+            <!-- {{resultData[i].dynamicOutput.createTime}} -->
+          </view> 
+          <view class="number-back"> 
+            <text class="age">{{resultData[i].getUserInfoOutput.age}}岁·{{resultData[i].getUserInfoOutput.area}}·{{resultData[i].getUserInfoOutput.stature}}cm</text> 
+          </view> 
+        </view> 
+      </view> 
+      <!-- 内容 -->
+      <view class="detailBack">{{resultData[i].dynamicOutput.content}}</view>
+      <!-- 图片 -->
+    <!-- 100vw - 40rpx -->
+      <view class="image_list_back" style="height: {{resultData[i].dynamicOutput.urlPicture.length>6 ? 'calc(100vw - 40rpx)' : (resultData[i].dynamicOutput.urlPicture.length>3 ?  'calc((100vw - 40rpx) * 2 / 3 - 10rpx )' : (resultData[i].dynamicOutput.urlPicture.length== 1 ? 'calc(100vw - 40rpx)' : 'calc(100vw - 40rpx) / 3)'))}}; margin-right:{{resultData[i].dynamicOutput.urlPicture.length==4 ? 'calc((100vw - 40rpx) / 3 - 10rpx )':''}}">
+        <block wx:for="{{resultData[i].dynamicOutput.urlPicture}}" wx:for-index="j">
+          <view class="image_item" style="height:{{resultData[i].dynamicOutput.urlPicture.length == 1 ? 'calc(100vw - 40rpx)':''}}; width:{{resultData[i].dynamicOutput.urlPicture.length == 1 ? 'calc(100vw - 40rpx)':''}};background-size:cover; background-image: url({{resultData[i].dynamicOutput.urlPicture[j]}})" catchtap=""></view>
+        </block>
+      </view>
+
+      <view class="line"></view>
+      <view style="display:flex;flex-direction:row;justify-content:space-between;height:40rpx;margin-top:5rpx;">
+        <view style="display:flex;flex-direction:row;height:40rpx;width:40vw;justify-content:center;">
+          <view class="cuIcon-appreciatefill {{resultData[i].isFlag ? 'text-red' : 'text-grey'}}" style="height:30rpx;width:30rpx;margin-top:5rpx;" catchtap="appreciateAction" data-item="{{i}}"></view>
+          <view class="text-grey" style="display:flex;height:30rpx;width:30rpx;margin-top:5rpx;margin-left:2rpx;align-items:center;justify-content:center;">{{resultData[i].likes == 0 ? '' : resultData[i].likes}}</view>
+        </view>
+        <view style="display:flex;flex-direction:row;height:40rpx;width:40vw;justify-content:center;">
+          <view class="cuIcon-messagefill text-grey" style="height:30rpx;width:30rpx;margin-top:5rpx"></view>
+          <view class="text-grey" style="display:flex;height:30rpx;width:30rpx;margin-top:5rpx;margin-left:2rpx;align-items:center;justify-content:center">{{resultData[i].commentOutputs.length == 0 ? '' : resultData[i].commentOutputs.length}}</view>
+        </view>
+        <block wx:if="{{userId == resultData[i].getUserInfoOutput.userId}}">
+           <view style="display:flex;flex-direction:row;height:40rpx;width:40vw;justify-content:center;">
+            <view class=" text-red" style="height:30rpx;margin-top:5rpx" catchtap="deleteAction" data-index="{{i}}">删除</view>
+            <!-- <view class="text-grey" style="display:flex;height:30rpx;width:30rpx;margin-top:5rpx;margin-left:2rpx;align-items:center;justify-content:center"></view> -->
+          </view>
+        </block>
+      </view>
+
+
+  <!-- 评论 -->
+  <view style="display:flex;margin:0rpx 30rpx 0 30rpx;background-color:#eee;border-radius: 10rpx;" wx:for="{{resultData[i].commentOutputs}}" wx:for-index="k">
+    <view style="display:flex;background-color:#eee" catchtap="">
+    <!-- commentAction -->
+        <view style="display:flex;flex-direction:row;margin:5rpx 20rpx 5rpx 20rpx">
+          <text class="comment" style="">{{resultData[i].commentOutputs[k].formUserName}}</text>
+          <text class="comment" style="color:black"> 回复 </text>
+          <text class="comment" style="">{{resultData[i].commentOutputs[k].toUserName}}:</text>
+          <text class="comment" style="color:black">{{resultData[i].commentOutputs[k].commentContent}}</text>
+        </view>
+      </view>
+  </view>
+  <view style="height:30rpx"></view>
+
+    </view>
+  </view>
+</block>
+
+<block wx:elif="{{typeSelectNum == 1}}">
+  <!-- 匹配 -->
+  <view style="display:flex;margin-top:60rpx;flex-direction:column;background-color:white">
+  <block wx:for="{{reCommondData}}" wx:for-index="i">
+  <view style="height:30rpx;background-color:#eee"></view>
+    <view class="recommondtitle">
+      <view class="cuIcon-likefill text-white" style="margin:12.5rpx;width:35rpx;height:35rpx"></view>
+      <view style="font-size:24rpx;color:white;margin:10rpx">今日推荐</view>
+    </view>
+    <view style="display:flex;flex-direction:column;background-color:white" bindtap="_clickCell" data-index="{{i}}">
+      <view class="recommondImage" style="background-image: url('{{reCommondData[i].picture}}')"></view>
+      <view style="margin-left:30rpx;">{{reCommondData[i].nickName}}</view>
+      <view style="margin-left:30rpx">{{reCommondData[i].age}}岁 · {{reCommondData[i].status}}cm · {{reCommondData[i].area}} ·</view>
+    </view>
+  </block>
+    <view class="main_cell" style="background-color:#eee">
+      <block  wx:for="{{searchListData}}" wx:for-index="i">
+        <view style="display:flex;flex-direction:column;background-color:white;margin-top:30rpx" bindtap="_clickCell" data-index="{{i}}">
+          <view class="searchList" style="background-image: url('{{searchListData[i].headUrl}}')"></view>
+          <view class="ml-t ml-l">{{searchListData[i].nickName}}</view>
+          <view class="ml-t ml-l ml-b">{{searchListData[i].gender}} · {{searchListData[i].age}}岁 · {{searchListData[i].stature}}cm · {{searchListData[i].salary}} · {{searchListData[i].area}} ·</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</block>
+
+
+
+
+
+
+<!-- 评论窗口 -->
+<view style="position:fixed;z-index:888;background-color:#eee;left:0rpx;right:0rpx;top:100vh;height:250rpx" animation="{{commentAnimationData}}">
+  <view style="display:flex;flex-direction:row">
+    <view style="display:flex;background-color:white;margin:20rpx 0rpx 20rpx 40rpx;width:70vw;height:210rpx;flex-direction:column">
+      <textarea style="display:flex;margin:10rpx 10rpx 0rpx 10rpx;width:calc(70vw - 20rpx)" placeholder="{{commentPlaceholder}}" cursor-spacing="170" bindinput='userInput' maxlength="100" value="{{inputStr}}"></textarea>
+      <view style="display:flex;margin:0rpx 10rpx 10rpx 10rpx;justify-content:flex-end;color:#ddd">{{length}}/100</view>
+    </view>
+    <view style="display:flex;margin: 20rpx 10rpx 20rpx 0;height:210rpx;width:calc(30vw - 50rpx);flex-direction:column">
+      <image class="cuIcon-close" style="display:flex;margin-left:calc(30vw - 90rpx);width:40rpx;height:40rpx;" bindtap="closeComment"></image>
+      <text style="display:flex;width:calc(30vw - 50rpx);height:{{canDeletComment? '85rpx':'150rpx'}};color:rgb(109, 109, 248);align-items:center;justify-content:center;">发送</text>
+      <block wx:if="{{canDeletComment}}">
+        <text style="display:flex;width:calc(30vw - 50rpx);height:85rpx}};color:red;align-items:center;justify-content:center;">删除</text>
+      </block>
+    </view>
+  </view>
+</view>
+
+
+

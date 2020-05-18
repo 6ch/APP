@@ -1,0 +1,22 @@
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+
+.ava {
+	height: 300rpx;
+	width: 300rpx;
+	margin: 0 auto;
+	/* align-self: center; */
+}
+
+.avaWrap {
+	height:320rpx;
+	width:100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sureBtn {
+	background-image: linear-gradient(#a273e7, #8074e8);
+}

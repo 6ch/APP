@@ -1,0 +1,14 @@
+/* pages/homeDetail/homeDetail.wxss */
+page{ 
+  background-color: #f6f6f6; 
+} 
+.main_cell { 
+  display: flex; 
+  flex-direction: column; 
+  /* height: 467rpx;  */
+  background-color: white; 
+} 
+.info-top{ 
+  display: flex; 
+  flex-direction: row; 
+} 

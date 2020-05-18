@@ -1,0 +1,226 @@
+<scroll-view scroll-x class="themeBg nav text-center">
+  <view class="cu-item px-h {{index==TabCur?'text-white':'c5'}}" wx:for="{{tabData}}" wx:key="*this" bindtap="tabSelect" data-id="{{index}}">
+    {{item}}
+  </view>
+</scroll-view>
+
+<!-- 择偶标准 -->
+<form wx:if="{{TabCur == 1}}" bindsubmit="formSubmitwinfo" >
+
+  <view class="cu-form-group">
+    <text class="t2 c1 text-bold">择偶标准<text class="t3 c3"> -填写越多越能匹配到您心仪的对象</text></text>
+  </view>
+
+  <view class="cu-form-group row justify-between">
+    <text class="t1 c1">身高(cm)</text>
+    <input bindinput="inputChangew"  id="statureMin" class="t2 text-right" style="color: orange" placeholder="身高最低至" value="{{winfo.statureMin}}"></input>
+  </view>
+    <view class="cu-form-group row justify-between">
+    <text class="t1 c1">身高(cm)</text>
+    <input bindinput="inputChangew"  id="statureMax"  class="t2 text-right" style="color: orange" placeholder="身高最高至" value="{{winfo.statureMax}}"></input>
+  </view>
+
+  <view class="cu-form-group">
+    <text class="t1 c1">年龄(岁)</text>
+    <input  bindinput="inputChangew"  id="ageMin" class="t2 text-right" style="color: orange" placeholder="年龄最小至" value="{{winfo.ageMin}}"></input>
+  </view>
+
+    <view class="cu-form-group">
+    <text class="t1 c1">年龄(岁)</text>
+    <input bindinput="inputChangew"  id="ageMax" class="t2 text-right" style="color: orange" placeholder="年龄最大至" value="{{winfo.ageMax}}"></input>
+  </view>
+
+
+  <view class="cu-form-group">
+		<view class="t1 c1">学历要求</view>
+		<picker bindchange="educationPickerChange" value="{{item}}" range="{{educationList}}">
+			<view class="picker {{winfo.educationalBackground ? 'text-orange' : ''}}">
+				{{winfo.educationalBackground || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+
+  <view class="cu-form-group">
+		<view class="title">户口所在地</view>
+		<picker mode="region" bindchange="wRegionChange"  custom-item="{{customItem}}">
+			<view class="picker">
+				{{winfo.nativePlace}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">居住地</view>
+		<picker mode="region" bindchange="wcurRegionChange" custom-item="{{customItem}}">
+			<view class="picker">
+				{{winfo.area}}
+			</view>
+		</picker>
+	</view>
+
+
+  <view class="cu-form-group row justify-between">
+    <text class="t1 c1">月薪(元)</text>
+    <input bindinput="inputChangew"  id="salaryMin" class="t2 text-right" style="color: orange" placeholder="月薪最低至" value="{{winfo.salaryMin}}"></input>
+  </view>
+
+  <view class="cu-form-group row justify-between">
+    <text class="t1 c1">月薪(元)</text>
+    <input bindinput="inputChangew"  id="salaryMax" class="t2 text-right" style="color: orange" placeholder="月薪最高至" value="{{winfo.salaryMax}}"></input>
+  </view>
+
+    <view class="cu-form-group">
+		<view class="t1 c1">住房</view>
+		<picker bindchange="whousePickerChange" value="{{item}}" range="{{houseList}}">
+			<view class="picker {{winfo.housing ? 'text-orange' : ''}}">
+				{{winfo.housing || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+    <view class="cu-form-group">
+		<view class="t1 c1">汽车</view>
+		<picker bindchange="wcarPickerChange" value="{{item}}" range="{{carList}}">
+			<view class="picker {{winfo.automobile ? 'text-orange' : ''}}">
+				{{winfo.automobile || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="row">
+<button formType="submit" class="cu-btn justify-center bg-red margin-tb-lg lg themeBg">完成</button>
+</view>
+</form>
+
+
+<!-- 个人信息 -->
+<form wx:if="{{TabCur == 0}}" bindsubmit="formSubmitinfo"  >
+
+  <view class="cu-form-group">
+    <text class="t2 c1 text-bold">基本信息<text class="t3 c3"> -填写越多越能匹配到您心仪的对象</text></text>
+  </view>
+
+  <view class="cu-form-group row justify-between">
+    <text class="t1 c1">身高(cm)</text>
+    <input bindinput="inputChange"  id="stature" class="t2 text-right" style="color: orange" placeholder="您的身高单位CM" value="{{info.stature}}"></input>
+  </view>
+
+  <view class="cu-form-group">
+    <text class="t1 c1">年龄(岁)</text>
+    <input bindinput="inputChange"  id="age"  class="t2 text-right" style="color: orange" placeholder="您的身高单位CM" value="{{info.age}}"></input>
+  </view>
+
+  <view class="cu-form-group">
+    <text class="t1 c1">体重(千克)</text>
+    <input bindinput="inputChange"  id="weight"  class="t2 text-right" style="color: orange" value="{{info.weight}}"></input>
+  </view>
+
+  <view class="cu-form-group">
+    <text class="t1 c1">性别</text>
+
+    <radio-group bindchange='genderChange' class="block row ">
+      <view class="row ml-r">
+        <view class="ms-r">男</view>
+        <radio value="男" checked="{{info.gender === '男'}}"></radio>
+      </view>
+      <view class="row">
+        <view class="ms-r">女</view>
+        <radio value="女" checked="{{info.gender === '女'}}"></radio>
+      </view>
+    </radio-group>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="t1 c1">婚史</view>
+		<picker bindchange="marryPickerChange" value="{{item}}" range="{{marryList}}">
+			<view class="picker {{info.marriedStatus ? 'text-orange' : ''}}">
+				{{info.marriedStatus || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">户口所在地</view>
+		<picker mode="region" bindchange="RegionChange" value="{{info.nativePlace}}" custom-item="{{customItem}}">
+			<view class="picker">
+				{{info.nativePlace}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">居住地</view>
+		<picker mode="region" bindchange="curRegionChange" value="{{info.area}}" custom-item="{{customItem}}">
+			<view class="picker">
+				{{info.area}}
+			</view>
+		</picker>
+	</view>
+
+    <view class="cu-form-group row justify-between">
+    <text class="t1 c1">公司名</text>
+    <input bindinput="inputChange"  id="company" class="t2 text-right" style="color: orange" placeholder="请填写您供职的公司名" value="{{info.company}}"></input>
+  </view>
+
+    <view class="cu-form-group row justify-between">
+    <text class="t1 c1">行业</text>
+    <input bindinput="inputChange"  id="industry"  class="t2 text-right" style="color: orange" placeholder="请填写您所在行业" value="{{info.industry}}"></input>
+  </view>
+
+  <view class="cu-form-group row justify-between">
+    <text class="t1 c1">月薪(元)</text>
+    <input  bindinput="inputChange"  id="salary" class="t2 text-right" style="color: orange" placeholder="请填写您的月薪" value="{{info.salary}}"></input>
+  </view>
+
+    <view class="cu-form-group">
+		<view class="t1 c1">住房</view>
+		<picker bindchange="housePickerChange" value="{{item}}" range="{{houseList}}">
+			<view class="picker {{info.housing ? 'text-orange' : ''}}">
+				{{info.housing || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+    <view class="cu-form-group">
+		<view class="t1 c1">汽车</view>
+		<picker bindchange="carPickerChange" value="{{item}}" range="{{carList}}">
+			<view class="picker {{info.automobile ? 'text-orange' : ''}}">
+				{{info.automobile  || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+    <view class="cu-form-group">
+		<view class="t1 c1">期望结婚时间</view>
+		<picker bindchange="expectedMarriageTimePickerChange" value="{{item}}" range="{{expectedMarriageTimeList}}">
+			<view class="picker {{info.hopeMarriedTime ? 'text-orange' : ''}}">
+				{{info.hopeMarriedTime || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+      <view class="cu-form-group">
+		<view class="t1 c1">孤独指数</view>
+		<picker bindchange="lonelyPickerChange" value="{{item}}" range="{{lonelyList}}">
+			<view class="picker  {{info.lonelinessIndex ? 'text-orange' : ''}}">
+				{{info.lonelinessIndex  || '请选择'}}
+			</view>
+		</picker>
+	</view>
+
+        <view class="cu-form-group">
+		<view class="t1 c1">是否会厨艺</view>
+		<picker bindchange="cookPickerChange" value="{{item}}" range="{{cookList}}">
+			<view class="picker  {{info.isCookDinner ? 'text-orange' : ''}}">
+				{{info.isCookDinner || '请选择'}}
+			</view>
+		</picker>
+	</view>
+<view class="row">
+<button formType="submit"  class="cu-btn justify-center bg-red margin-tb-lg lg themeBg">完成</button>
+</view>
+</form>
+
+
+

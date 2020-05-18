@@ -1,0 +1,4 @@
+/* pages/activityDetail/activityDetail.wxss */
+page{ 
+  background-color: #f6f6f6; 
+} 

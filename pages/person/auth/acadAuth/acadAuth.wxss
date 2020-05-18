@@ -1,0 +1,6 @@
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.sureBtn {
+	background-image: linear-gradient(#a273e7, #8074e8);
+}

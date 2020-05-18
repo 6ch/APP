@@ -1,0 +1,17 @@
+
+
+<view class="mx-t bg-white padding">
+  <view class="row"  wx:for="{{list}}">
+    <view class="text-bold text-black t1" style="width:250rpx">074月</view>
+    <view class="cu-card article no-card">
+      <view class="cu-item shadow">
+         <view class="content">
+          <image style="width:6.4em" src="{{item.dynamicOutput.urlPicture[0]}}" mode="aspectFill" class="action" bindtap="TapImage" data-url="{{item.dynamicOutput.urlPicture[0]}}"></image>
+          <view class="desc">
+            <view class="text-content flex1">{{item.dynamicOutput.content}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

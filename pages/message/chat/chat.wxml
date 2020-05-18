@@ -1,0 +1,84 @@
+<!--pages/chat/chat.wxml-->
+<view style="padding-bottom:100rpx">
+  <cu-custom bgColor="bg-cTheme" isCustom="{{true}}" title="聊天">
+  </cu-custom>
+  <scroll-view scroll-y='true' scroll-into-view="{{lastItem}}" bindscrolltoupper="loadMoreHistory" id="content" style="height:{{height}}px;padding-bottom:{{InputBottom>0?InputBottom:0}}px">
+    <view class="cu-chat" >
+      <view
+        wx:for="{{message}}" 
+        wx:key="id"
+        id="item-{{item.id}}"
+        data-id="{{item.id}}"
+      >
+        <view class="cu-item {{item.self?'self':''}}" style="{{item.self?'':'flex-direction: row-reverse;justify-content: flex-end'}}">
+          <view class="main">
+            <view wx:if="{{item.type===1}}">
+              <view class="content bg-green shadow">
+                <text>{{item.content}}</text>
+              </view>
+            </view>
+            <image wx:elif="{{item.type===2}}" src="{{item.content}}" class="radius" mode="widthFix"></image>
+          </view>
+          <view bindtap="{{!item.self?'toInvestmentAdvisor':''}}" class="cu-avatar radius" style="background-image:url({{item.self?selfIcon:otherIcon}});"></view>
+          <view class="date">{{item.time}}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入框 -->
+  <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
+    <view class="action">
+      <text class="cuIcon-sound text-grey"></text>
+    </view>
+    <input
+      type="text"
+      confirm-type='send'
+      class="solid-bottom"
+      bindfocus="InputFocus"
+      bindblur="InputBlur"
+      adjust-position="{{false}}"
+      focus="{{false}}"
+      maxlength="300"
+      cursor-spacing="10"
+      value="{{inputMsg}}"
+      bindconfirm="sendMsgTap"></input>
+    <view class="action">
+      <text class="cuIcon-emojifill text-grey"></text>
+    </view>
+    <button class="cu-btn bg-green shadow" bindtap="showModal">展开</button>
+  </view>
+  <!-- 底部输入框 -->
+
+
+  <!--顶部弹框  -->
+  <view class="cu-modal bottom-modal {{modalShow?'show':''}}" bindtap="hideModal" style="background:transparent">
+    <view class="cu-dialog" catchtap>
+      <view class="modal-box">
+        <view class="button-box" bindtap="uploadPic" catchtap>
+          <view class="icon-box">
+            <image class="icon-image" src="./images/sczp.png"></image>
+          </view>
+          <text class="ms-t t2 c1">上传图片</text>
+        </view>
+        <view class="button-box" bindtap="photograph" catchtap>
+          <view class="icon-box">
+            <image class="icon-image" src="./images/pz.png"></image></view>
+          <text class="ms-t t2 c1">拍照</text>
+        </view>
+        <view class="button-box" bindtap="video" catchtap>
+          <view class="icon-box">
+            <image class="icon-image" src="./images/sp.png"></image></view>
+          <text class="ms-t t2 c1">视频</text>
+        </view>
+        <view class="button-box" bindtap="file" catchtap>
+          <view class="icon-box">
+            <image class="icon-image" src="./images/wj.png"></image></view>
+          <text class="ms-t t2 c1">文件</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 顶部弹框 -->
+

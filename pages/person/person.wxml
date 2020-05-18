@@ -1,0 +1,97 @@
+<view class="">
+<!-- 信息 -->
+<view class="head pl">
+  
+	<view bindtap="updateHeadUrl" class="cu-avatar ave " style="background-image:url({{ava}})" >
+    <view class='radius bg-c3 c0 t2 pd-h ps-v' style='margin-top:100rpx '>更换头像</view>
+  </view>
+
+
+	<view class="ps-v pl-h info">
+		<view class="pl-b" bindtap="showModal1">
+			<text class="t1 c1">{{account}}</text>
+			<image class="icon" src="./assets/签名1.png" />
+			<text class="ml-l t1 c1">编号：{{no}}</text>
+		</view>
+
+		<view bindtap="showModal2">
+			<image class="icon " src="./assets/签名1.png" />
+			<text class="t2 c1">{{sign}}</text>
+		</view>
+	</view>
+  <navigator url="/pages/person/info/info" hover-class="none">
+	  <view class="cuIcon-right" />
+  </navigator>
+</view>
+
+<!-- 标签 -->
+<view class="bg-white pd-b pd-h">
+	<view class="grid text-center">
+		<view class="c0 radius ps-v pd-h ms" style="background-color: #c3aff9 " wx:for="{{label}}" wx:key="*this">
+			{{item}}
+		</view>
+	</view>
+</view>
+
+<!-- 栏目 -->
+<view class="cu-list menu  margin-top-xl margin-bottom-xl">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/person/auth/auth" hover-class="none">
+        <image class="icon" src="./assets/认证.png"></image>
+        <text class="text-grey">认证</text>
+      </navigator>
+    </view>
+		<view class="cu-item arrow">
+      <navigator class="content" url="/pages/Myactivity/Myactivity?type=3" hover-class="none">
+        <image class="icon" src="./assets/活动.png"></image>
+        <text class="text-grey">我的活动</text>
+      </navigator>
+    </view>
+		<view class="cu-item arrow">
+      <navigator class="content" url="/pages/assets/assets" hover-class="none">
+        <image class="icon" src="./assets/相册.png"></image>
+        <text class="text-grey">我的相册</text>
+      </navigator>
+    </view>
+</view>
+</view>
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">给自己设置一个昵称吧</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl bg-c0">
+      	<input class="bg-cLine pl t1 c1" bindinput="setName" />
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+      	<button class="bg-c0 text-gray mm" bindtap="hideModal">取消</button>
+        <button class="bg-c0 text-black mm" bindtap="updateNickName">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">谈谈自己独白或心情！</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl bg-c0">
+     	<input class="bg-cLine pl t1 c1" bindinput="setSign" />
+    </view>
+    <view class="cu-bar bg-c0">
+      <view class="action">
+        <button class="bg-c0 text-gray mm" bindtap="hideModal">取消</button>
+        <button class="bg-c0 text-black mm" bindtap="updateMonologue">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<!--pages/person/auth/auth.wxml-->
+<!-- 栏目 -->
+<view class="cu-list menu  margin-top-xl margin-bottom-xl">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/person/auth/idAuth/idAuth" hover-class="none">
+        <image class="icon" src="./assets/身份证.png"></image>
+        <text class="text-grey">身份认证</text>
+      </navigator>
+    </view>
+		<view class="cu-item arrow">
+      <navigator class="content" url="/pages/person/auth/acadAuth/acadAuth" hover-class="none">
+        <image class="icon" src="./assets/学历.png"></image>
+        <text class="text-grey">学历认证</text>
+      </navigator>
+    </view>
+
+</view>
+

@@ -1,0 +1,113 @@
+<!--pages/activityDetail/activityDetail.wxml-->
+<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{infoData.activityMoreInfo.activityPictureUrl.length}}" wx:for-index="i">
+    <image src="{{infoData.activityMoreInfo.activityPictureUrl[i]}}" mode="aspectFill"></image>
+    <!-- <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video> -->
+  </swiper-item>
+</swiper>
+
+<view class="flex-sub solid-bottom padding bg-white">
+  <view class="text-black">{{infoData.activityMoreInfo.activityTheme}}</view>
+  <view class="text-red text-sm margin-top">¥{{infoData.activityMoreInfo.activityCost}}</view>
+  <view class="margin-top">
+    <text class="cuIcon-timefill text-gray text-sm">{{infoData.activityMoreInfo.activityStartTime}}至{{infoData.activityMoreInfo.activityEndTime}}</text>
+  </view> 
+  <view class="margin-top-sm flex justify-between">
+    <text class="cuIcon-locationfill text-gray text-sm">{{infoData.activityMoreInfo.activityAddress}}</text>
+    <text class="cuIcon-right text-black" bindtap="toMap"></text>
+  </view>
+</view>
+
+<view class="flex-sub padding bg-white margin-top">
+  <view class="text-black text-bold">活动详情</view>
+  <view class=""></view>
+  <rich-text class="margin-top" nodes="{{infoData.activityMoreInfo.activityDetails}}"></rich-text>
+</view>
+
+<view class="flex-sub padding bg-white margin-top">
+  <view class="text-black text-bold">懒人提示</view>
+  <view class="margin-top">{{infoData.activityMoreInfo.activitySpecification}}</view>
+</view>
+
+<view class="flex-sub padding bg-white margin-top">
+  <view class="text-black text-bold">预定需知</view>
+  <view class="margin-top">{{infoData.activityMoreInfo.activityTips}}</view>
+</view>
+
+<view class="flex-sub padding bg-white margin-top">
+  <view class="text-black text-bold">活动总人数</view>
+  <view class="margin-top">{{infoData.activityMoreInfo.activityJoinPerson}}人</view>
+</view>
+
+<view class="flex-sub padding bg-white margin-top">
+  <view>
+    <text class="cuIcon-likefill t2 c4">{{userList.length}}预定过</text>
+  </view>
+  <view class="padding">
+    <view class="cu-avatar-group">
+      <view class="cu-avatar round lg" wx:for="{{userList.length}}" wx:key style="background-image:url('{{userList[index].headUrl}}');"></view>
+    </view>
+  </view>
+</view>
+
+<view class="flex-sub grid col-2 flex justify-between px" style="height:80rpx;padding-left:80rpx;padding-right:80rpx">
+    <text class="cuIcon-appreciatefill {{infoData.isLike ? 'text-red' : 'text-gray'}} t2" bindtap="appreciateAction">{{infoData.likeNum}}</text>
+    <text class="cuIcon-messagefill text-grey t2" bindtap="commentAction">{{infoData.commentOutputs.length}}</text>
+</view>
+
+    <view class="cu-list menu-avatar comment solids-top" wx:for="{{listData.length}}" wx:for-index="i">
+      <view class="cu-item" bindtap="_clickCell" data-index="{{i}}">
+        <view class="cu-avatar round" style="background-image:url('{{listData[i].commentHeadUrl}}');"  catchtap="clickHeader" data-index="{{i}}"></view>
+        <view class="content">
+          <view class="flex justify-between">
+            <view class="text-grey">{{listData[i].formUserName}}</view>
+          </view>
+          <view class="text-gray text-content text-df">
+            {{listData[i].commentContent}}
+          </view>
+          <!-- <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+            <view class="flex">
+              <view>凯尔：</view>
+              <view class="flex-sub">妹妹，你在帮他们给黑暗找借口吗?</view>
+            </view>
+          </view> -->
+          <view class="margin-top-sm flex justify-between">
+            <view class="text-gray text-df">{{listData[i].createTime}} 回复 : {{listData[i].toUserName}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+
+
+
+
+
+<view style="height:120rpx"></view>
+
+<view style="position:fixed;z-index:666;left:0rpx;right:0rpx;bottom:0rpx;">
+  <view class="grid col-2 text-center">
+     <view class="bg-white">
+      <navigator class="cu-avatar round lg" url="/pages/message/chat/chat" style="background-image:url({{headerURL}});"></navigator>
+     </view>
+    <view class="padding bg-gray solid text-white text-center themeBg" bindtap="reserveAction">{{infoData.isJoin ? '已预订' : '马上预定'}}</view>
+  </view>
+</view>
+
+
+
+<!-- 评论窗口 -->
+<view style="position:fixed;z-index:888;background-color:#eee;left:0rpx;right:0rpx;top:100vh;height:250rpx" animation="{{commentAnimationData}}">
+  <view style="display:flex;flex-direction:row">
+    <view style="display:flex;background-color:white;margin:20rpx 0rpx 20rpx 40rpx;width:70vw;height:210rpx;flex-direction:column">
+      <textarea style="display:flex;margin:10rpx 10rpx 0rpx 10rpx;width:calc(70vw - 20rpx)" placeholder="{{commentPlaceholder}}" cursor-spacing="170" bindinput='userInput' maxlength="100" value="{{inputStr}}"></textarea>
+      <view style="display:flex;margin:0rpx 10rpx 10rpx 10rpx;justify-content:flex-end;color:#ddd">{{length}}/100</view>
+    </view>
+    <view style="display:flex;margin: 20rpx 10rpx 20rpx 0;height:210rpx;width:calc(30vw - 50rpx);flex-direction:column">
+      <image class="cuIcon-close" style="display:flex;margin-left:calc(30vw - 90rpx);width:40rpx;height:40rpx;" bindtap="closeComment"></image>
+      <text style="display:flex;width:calc(30vw - 50rpx);height:150rpx;color:rgb(109, 109, 248);align-items:center;justify-content:center;" bindtap="add">发送</text>
+    </view>
+  </view>
+</view>
+

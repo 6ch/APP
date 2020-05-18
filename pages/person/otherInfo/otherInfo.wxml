@@ -1,0 +1,75 @@
+
+<!-- 头像 -->
+<view class="justify-center row"  style="height: 320rpx; width: 100%">
+<image src="{{ava}}"  style="height: 320rpx; width: 320rpx" />
+</view>
+
+<view class="space md-v" />
+
+<!-- 个人信息 -->
+<view class="pd-h" >
+  <view class="ps-b">
+    <text class="c1 t2 ml-r">{{name}}</text>
+    <image class="icon" src="{{gender !=='女' ? '../assets/男.png' : '../assets/女.png'}}" />
+  </view>
+  <view class="ps-b">
+    <text class="c2 t2">{{age}} · {{height}} · {{city}}</text>
+  </view>
+  <view class="ps-b">
+    <text class="c1 t1">{{fans}}粉丝</text>
+  </view>
+</view>
+
+<view class="line md-v" />
+
+<!-- 基本资料 -->
+<view class="pd-h" >
+  <view class="pd-b">
+    <text class="c1 tHead">基本资料</text>
+  </view>
+
+  <view class="flex flex-wrap">
+    <view wx:for="{{infoList}}" wx:key="*this">
+      <text class="bg-c0 cTheme md-r md-b cu-tag round border-theme ">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="justify-between row">
+    <text class="text-grey t3 c3">编辑个人信息</text>
+  </view>
+</view>
+
+<view class="line md-v" />
+
+<!-- 择偶标准 -->
+<view class="pd-h" >
+  <view class="pd-b">
+    <text class="c1 tHead">择偶标准</text>
+  </view>
+
+  <view class="flex flex-wrap">
+    <view wx:for="{{partnerInfo}}" wx:key="*this">
+      <text class="bg-c0 cTheme md-r md-b cu-tag round border-theme ">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="justify-between row" >
+    <text class="text-grey t1 c1">编辑择偶标准</text>
+  </view>
+</view>
+
+<view class="line md-v" />
+
+<!-- 心动对象 -->
+<view class="pd-h" >
+  <view class="pd-b">
+    <text class="c1 tHead">心动对象</text>
+  </view>
+
+  <view class="justify-between row bg-c5" >
+    <text class="text-grey t3 c3">{{heartBeatObject || '待添加'}}</text>
+  </view>
+</view>
+
+
+

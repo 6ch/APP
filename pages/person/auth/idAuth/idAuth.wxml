@@ -1,0 +1,48 @@
+<form>
+	<view class="cu-form-group">
+		<view class="title">您的姓名</view>
+		<input value="{{name}}"></input>
+		<image class="icon text-orange" src="../assets/完成.png" />
+	</view>
+
+	<view class="avaWrap">
+		<image class="ava" bindtap="uploadPic" src="{{imgSrc}}"></image>
+	</view>
+<view class="cu-form-group">
+	<radio-group class="block row flex1 justify-center">
+		<view class="row ml">
+			<view class="ms">男</view>
+			<radio value="m" checked="{{gender === '男'}}"></radio>
+		</view>
+		<view class="row ml">
+			<view class="ms">女</view>
+			<radio value="w" checked="{{gender === '女'}}"></radio>
+		</view>
+	</radio-group>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="title">微信</view>
+		<input value="{{wx}}"></input>
+	</view>
+		<view class="cu-form-group">
+		<view class="title">QQ</view>
+		<input value="{{qq}}"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">出生日期</view>
+		<picker mode="date" value="{{date}}" bindchange="DateChange">
+			<view class="picker">
+				{{date}}
+			</view>
+		</picker>
+	</view>
+</form>
+
+<view class="ml">
+	<text class=" c3 t2"><text class="ms-r c1 t2">温馨提示</text>{{tip}}</text>
+</view>
+
+<view class="row">
+<button class="cu-btn justify-center bg-red margin-tb-lg lg sureBtn">完成</button>
+</view>

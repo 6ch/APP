@@ -1,0 +1,13 @@
+/* pages/activity/activity.wxss */
+page{ 
+  background-color: #f6f6f6; 
+} 
+.text {
+  display: -webkit-box;    
+  word-break: break-all;
+  text-overflow: ellipsis;  
+  overflow: hidden;          
+  -webkit-box-orient: vertical;   
+  -webkit-line-clamp: 2;   
+
+} 

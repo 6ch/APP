@@ -1,0 +1,28 @@
+
+<block wx:for="{{listData.length}}" wx:for-index="i">
+  <view class="cu-card case {{isCard?'no-card':''}} margin-top" bindtap="clickAction" data-id="{{listData[i].id}}">
+    <view class="cu-item shadow">
+      <view class="image">
+        <image src="{{listData[i].activityPictureUrl}}" mode="scaleToFill"></image>
+      </view>
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <!-- <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view> -->
+          <view class="flex-sub margin-left">
+            <view class="text-black text-bold ml-t text" style="-webkit-line-clamp: 1;">[开始]  {{listData[i].activityTheme}}</view>
+            <view class="flex justify-between">
+              <text class="text">目的地: {{listData[i].activityAddress}}</text>
+              <view class="text-red ml-r">¥{{listData[i].activityCost}}</view>
+            </view>
+            <!-- <view style="height:10rpx"></view> -->
+            <view class="flex justify-between">
+              <view class="text-gray text-sm flex justify-between">发布日期:{{listData[i].activityStartTime}}</view>
+              <view class="text-gray text-sm flex justify-between ml-r ml-b">截至日期:{{listData[i].activityEndTime}}</view>
+            </view>
+            <!-- <view style="height:10rpx"></view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

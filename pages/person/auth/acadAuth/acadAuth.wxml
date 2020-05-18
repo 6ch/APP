@@ -1,0 +1,25 @@
+<form>
+	<view class="cu-form-group">
+		<view class="title">学校名</view>
+		<input value="{{school}}"></input>
+		<image class="icon text-orange" src="../assets/完成.png" />
+	</view>
+
+
+	<view class="cu-form-group">
+		<view class="title">学历</view>
+		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+			<view class="picker">
+				{{educationalBackground || '请选择'}}
+			</view>
+		</picker>
+	</view>
+</form>
+
+<view class="ml">
+	<text class=" c3 t2"><text class="ms-r c1 t2">温馨提示</text>{{tip}}</text>
+</view>
+
+<view class="row">
+<button class="cu-btn justify-center bg-red margin-tb-lg lg sureBtn">完成</button>
+</view>
