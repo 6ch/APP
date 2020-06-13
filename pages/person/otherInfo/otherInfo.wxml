@@ -54,7 +54,7 @@
   </view>
 
   <view class="justify-between row" >
-    <text class="text-grey t1 c1">编辑择偶标准</text>
+    <text class="text-grey t1 c1">待添加</text>
   </view>
 </view>
 
@@ -66,8 +66,8 @@
     <text class="c1 tHead">心动对象</text>
   </view>
 
-  <view class="justify-between row bg-c5" >
-    <text class="text-grey t3 c3">{{heartBeatObject || '待添加'}}</text>
+  <view class="justify-between row " >
+    <text class="text-grey t3 c2">{{heartBeatObject || '待添加'}}</text>
   </view>
 </view>
 

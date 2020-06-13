@@ -43,20 +43,12 @@
 
   <view class="cu-form-group">
 		<view class="title">户口所在地</view>
-		<picker mode="region" bindchange="wRegionChange"  custom-item="{{customItem}}">
-			<view class="picker">
-				{{winfo.nativePlace}}
-			</view>
-		</picker>
+		<input bindinput="inputChangew"  id="nativePlace" class="t2 text-right" style="color: orange" placeholder="输入地址" value="{{winfo.nativePlace}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">居住地</view>
-		<picker mode="region" bindchange="wcurRegionChange" custom-item="{{customItem}}">
-			<view class="picker">
-				{{winfo.area}}
-			</view>
-		</picker>
+		<input bindinput="inputChangew"  id="area" class="t2 text-right" style="color: orange" placeholder="输入地址" value="{{winfo.area}}"></input>
 	</view>
 
 

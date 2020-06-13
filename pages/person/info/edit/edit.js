@@ -135,21 +135,21 @@ Page({
     })
 	},
 
-	wRegionChange: function(e) {
-		const {winfo={}} = this.data;
-    this.setData({
-			// region: e.detail.value
-      winfo: { ...winfo, nativePlace: e.detail.value.join(' ') }
-    })
-	},
+	// wRegionChange: function(e) {
+	// 	const {winfo={}} = this.data;
+  //   this.setData({
+	// 		// region: e.detail.value
+  //     winfo: { ...winfo, nativePlace: e.detail.value.join(' ') }
+  //   })
+	// },
 	
-	wcurRegionChange: function(e) {
-		const {winfo={}} = this.data;
-    this.setData({
-			// region: e.detail.value
-      winfo: { ...winfo, area: e.detail.value.join(' ') }
-    })
-	},
+	// wcurRegionChange: function(e) {
+	// 	const {winfo={}} = this.data;
+  //   this.setData({
+	// 		// region: e.detail.value
+  //     winfo: { ...winfo, area: e.detail.value.join(' ') }
+  //   })
+	// },
 	
 	whousePickerChange(e) {
     const { winfo = {}, houseList} = this.data;

@@ -1,5 +1,6 @@
 import { async } from "../../lib/runtime";
-import {GET,POST, wxUserID} from '../../utils/util'
+import {GET,POST} from '../../utils/util'
+const app = getApp()
 import moment from "moment";
 // pages/userDetail/userDetail.js
 var userid;
@@ -32,6 +33,12 @@ Page({
     this.refreshAll()
   },
   refreshAll:function () {
+    const myUserId = app.globalData.userId;
+    if (!myUserId) {
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+    }
     this.requestInfo()
     this.requestList()
     this.requestIsFlag()
@@ -96,7 +103,7 @@ Page({
    let that = this  
    let data = {
     attentionId: userid,
-    userId: wxUserID
+    userId: app.globalData.userId
    }
    let json = await POST('/im/friend/attention/isFlag',data)
    if (json.errCode == 200) {
@@ -108,8 +115,8 @@ Page({
  },
  // 关注
  attentionAction: async function () {
-  const userId = app.globalData.userId;
-  if (!userId) {
+  const myUserId = app.globalData.userId;
+  if (!myUserId) {
     wx.reLaunch({
       url: '/pages/login/login',
     })
@@ -118,7 +125,7 @@ Page({
   let that = this  
    let data = {
     attentionId: userid,
-    userId: wxUserID
+    userId: myUserId
    }
    let json = await POST('/im/friend/attention/addAndDel',data)
    if (json.errCode == 200) {
